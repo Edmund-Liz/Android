@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:padding="24dp" />
 
     <LinearLayout
+        android:id="@+id/answer_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal">
 
         <Button
             android:id="@+id/Ture_button"
@@ -30,13 +32,16 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingTop="70dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal">
 
         <ImageButton
             android:id="@+id/prev_button"
             android:layout_width="50sp"
             android:layout_height="30sp"
+            android:layout_gravity="bottom|start"
             android:src="@mipmap/arrow_left"
             android:contentDescription="@string/prev_view"/>
 
@@ -44,9 +49,10 @@
             android:id="@+id/next_button"
             android:layout_width="50sp"
             android:layout_height="30sp"
+            android:layout_gravity="bottom|end"
             android:src="@mipmap/arrow_right"
             android:contentDescription="@string/next_view"/>
 
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

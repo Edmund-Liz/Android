@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //mCurrentIndex = (mCurrentIndex + 1) % mQuestions.length;
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestions.length;
                 updateQuestion();
             }
         });
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             mQuestions[mCurrentIndex].Answered();
             mAnswered++;
             if (mAnswered == mQuestions.length) {
-                String pointString = String.valueOf((double) mPoint / mAnswered * 100) + "%";
+                String pointString = (double) mPoint / mAnswered * 100 + "%";
                 Toast.makeText(this, pointString, Toast.LENGTH_SHORT).show();
             }
         } else {

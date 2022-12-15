@@ -42,7 +42,7 @@
             android:layout_width="50sp"
             android:layout_height="30sp"
             android:layout_gravity="bottom|start"
-            android:src="@mipmap/arrow_left"
+            android:src="@drawable/arrow_left"
             android:contentDescription="@string/prev_view"/>
 
         <ImageButton
@@ -50,7 +50,7 @@
             android:layout_width="50sp"
             android:layout_height="30sp"
             android:layout_gravity="bottom|end"
-            android:src="@mipmap/arrow_right"
+            android:src="@drawable/arrow_right"
             android:contentDescription="@string/next_view"/>
 
     </LinearLayout>

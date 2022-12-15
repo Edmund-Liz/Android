@@ -6,6 +6,11 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"/>
+
+    <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,15 +41,15 @@
         <ImageButton
             android:id="@+id/prev_button"
             android:layout_width="50sp"
-            android:layout_height="30sp"
-            android:src="@mipmap/arrow_left"
+            android:layout_height="50sp"
+            android:src="@drawable/arrow_left"
             android:contentDescription="@string/prev_view"/>
 
         <ImageButton
             android:id="@+id/next_button"
             android:layout_width="50sp"
-            android:layout_height="30sp"
-            android:src="@mipmap/arrow_right"
+            android:layout_height="50sp"
+            android:src="@drawable/arrow_right"
             android:contentDescription="@string/next_view"/>
 
     </LinearLayout>

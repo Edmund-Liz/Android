@@ -3,7 +3,8 @@ package com.example.geoquiz;
 public class Question {
     private int mTextResId;
     private boolean mAnswerTure;
-    private  boolean mIfAnswer;
+    private boolean mIfAnswer;
+    private boolean mIfCheat;
 
     public Question(int textResId, boolean answerTure, boolean ifAnswer) {
         mTextResId = textResId;
@@ -30,8 +31,16 @@ public class Question {
     public boolean isIfAnswer() {
         return mIfAnswer;
     }
-    public void Answered(){
-        mIfAnswer=true;
+
+    public boolean isIfCheat() {
+        return mIfCheat;
     }
 
+    public void Answered() {
+        mIfAnswer = true;
+    }
+
+    public void Cheated() {
+        mIfCheat = true;
+    }
 }

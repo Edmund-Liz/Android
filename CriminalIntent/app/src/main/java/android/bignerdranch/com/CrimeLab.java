@@ -26,6 +26,8 @@ public class CrimeLab {
             crime.setSolved(i % 2 == 0); // 偶数true，奇数false
             mCrimes.add(crime);
         }
+        mCrimes.get(10).setRequiresPolice(true);
+        mCrimes.get(20).setRequiresPolice(true);
     }
 
     public List<Crime> getCrimes() {

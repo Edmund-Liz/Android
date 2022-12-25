@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class CrimeListFragment extends Fragment {
@@ -55,6 +57,13 @@ public class CrimeListFragment extends Fragment {
             mDateView=(TextView) itemView.findViewById(R.id.crime_date);
         }
 
+        public int getItemViewType(int position){
+            if (mCrime.isRequiresPolice()){
+                return 1;
+            }
+            else return 0;
+        }
+
         @Override
         public void onClick(View view){
             Toast.makeText(getActivity(),
@@ -71,7 +80,47 @@ public class CrimeListFragment extends Fragment {
 
     }
 
-    private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
+    private class PoliceHolder extends RecyclerView.ViewHolder
+    implements View.OnClickListener{
+        private TextView mTitleTextView;
+        private TextView mDateView;
+        private Button mPoliceButton;
+
+        private Crime mCrime;
+
+        public PoliceHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.list_item_crime2, parent, false));//给当前holder设置视图
+            itemView.setOnClickListener(this);//给当前holder设置监听器
+
+            mTitleTextView=(TextView) itemView.findViewById(R.id.crime_title);
+            mDateView=(TextView) itemView.findViewById(R.id.crime_date);
+            mPoliceButton=(Button) itemView.findViewById(R.id.police_button);
+        }
+
+        public int getItemViewType(int position){
+            if (mCrime.isRequiresPolice()){
+                return 1;
+            }
+            else return 0;
+        }
+
+        @Override
+        public void onClick(View view){
+            Toast.makeText(getActivity(),
+                            mCrime.getTitle()+"clicked!",Toast.LENGTH_SHORT)
+                    .show();
+        }
+
+        public void bind(Crime crime){
+            mCrime=crime;
+            mTitleTextView.setText(mCrime.getTitle());
+            mDateView.setText(mCrime.getDate().toString());
+        }
+
+
+    }
+
+    private class CrimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private List<Crime> mCrimes;
 
@@ -79,19 +128,37 @@ public class CrimeListFragment extends Fragment {
             mCrimes = crimes;
         }
 
-        @Override
-        public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+        public int getItemViewType(int position){
+                if (mCrimes.get(position).isRequiresPolice()){
+                    return 1;
+                }
+                else return 0;
+            }
 
-            return new CrimeHolder(layoutInflater, parent);
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            RecyclerView.ViewHolder aHolder=null;
+            if (viewType==0)
+                aHolder=new CrimeHolder(layoutInflater,parent);
+            else
+                aHolder=new PoliceHolder(layoutInflater,parent);
+
+            return aHolder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull CrimeHolder holder, int position) {
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             Crime crime=mCrimes.get(position);
-            if (crime.isRequiresPolice()){
+            if (holder.getItemViewType()==0) {
+                CrimeHolder crimeHolder = (CrimeHolder) holder;
+                crimeHolder.bind(crime);//使此holder的Title与Date词条成为当前position的Crime对象的对应词条
             }
-            holder.bind(crime);//使此holder的Title与Date词条成为当前position的Crime对象的对应词条
+            else {
+                PoliceHolder policeHolder=(PoliceHolder) holder;
+                policeHolder.bind(crime);
+            }
         }
 
         @Override

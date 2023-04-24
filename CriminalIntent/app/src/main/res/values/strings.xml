@@ -5,6 +5,8 @@
     <string name="crime_details_label">Details</string>
     <string name="crime_solved_label">Solved</string>
     <string name="police_button">Need police!</string>
+    <string name="ne_crime">New Crime</string>
     <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
     <string name="subtitle_format">%d</string>
 </resources>

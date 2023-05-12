@@ -4,18 +4,28 @@ import java.util.Date;
 import java.util.UUID;
 
 public class Crime {
-    private UUID mId;
+    private final UUID mId;
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
     private boolean mRequiresPolice;
+    private String mSuspect;
+
     public Crime() {
         this(UUID.randomUUID());
     }
 
-    public Crime(UUID id){
-        mId=id;
-        mDate=new Date();
+    public Crime(UUID id) {
+        mId = id;
+        mDate = new Date();
+    }
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 
     public UUID getId() {
@@ -34,16 +44,16 @@ public class Crime {
         return mDate;
     }
 
+    public void setDate(Date date) {
+        mDate = date;
+    }
+
     public boolean isSolved() {
         return mSolved;
     }
 
     public void setSolved(boolean solved) {
         mSolved = solved;
-    }
-
-    public void setDate(Date date) {
-        mDate = date;
     }
 
     public boolean isRequiresPolice() {
